@@ -27,7 +27,7 @@ window.SITE_CONTENT = {
   names: "James & Nielisson",
 
   // Short description used by search engines and link previews.
-  description: "Get to know us — our story, our life together and our hopes for the future.",
+  description: "Our story, our life together and our hopes for the future.",
 
   /* -------------------------------------------------------------------
      MENU — the labels of the links in the top bar
@@ -35,8 +35,11 @@ window.SITE_CONTENT = {
   menu: {
     home: "Home",
     story: "Our Story",
+    meet: "Meet Us",
+    journey: "Our Journey",
     albums: "Photo Albums",
     feed: "Our Feed",
+    contact: "Contact",
   },
 
   /* -------------------------------------------------------------------
@@ -46,8 +49,8 @@ window.SITE_CONTENT = {
     eyebrow: "Hello, and welcome",
     title: "We're James & Nielisson",
     intro: [
-      // PLACEHOLDER — one or two warm sentences introducing yourselves.
-      "Thank you for stopping by. We made this little website so you can get to know us a bit better — through our own words, our photos and a short video.",
+      "We're a Brazilian-Australian couple who live in Darwin, in the north of Australia. Nielisson is a game designer and 2D/3D artist, and James is a university professor.",
+      "Thank you for stopping by. We made this little website so you can get to know us a bit better through our own words, our photos and videos.",
     ],
     buttonText: "Explore our story",
     image: {
@@ -91,36 +94,131 @@ window.SITE_CONTENT = {
       {
         title: "Who we are",
         text: [
-          // PLACEHOLDER
-          "This is where we'll introduce ourselves — our names, where we live and a little about what each of us is like.",
+          "We're Nielisson (left) and James (right), a couple from Darwin, Australia, who love travelling, discovering new places, and making memories around the world. Now, we’re dreaming of our next big adventure: building a family together ❤️.",
+          "Becoming parents has long been one of our greatest dreams, and we are so ready to welcome a child into the loving family and home we have been building together. We are deeply grateful to be on this journey, and for this opportunity to build a genuine connection with a surrogate based on trust, respect, kindness, and open communication.",
         ],
         image: { src: "assets/images/story/who-we-are.jpg", alt: "A selfie of the two of us high above a bay" },
       },
       {
         title: "How we met",
         text: [
-          // PLACEHOLDER
-          "Here we'll share the story of how we first met, and the moment we knew we'd found something special.",
+          "We met in Paris in 2018, while both living and working there: Nielisson was studying Game Design and James was finishing his PhD in Linguistics. We have been together ever since, got engaged at the start of 2025 in our favourite park, Parc des Buttes-Chaumont, and are looking forward to getting married next year.",
+          "Although we now call Australia home, Paris will always hold a special place in our hearts. We both speak French, along with a few other languages, and one of the things we’re most excited about as future parents is sharing those languages, cultures, and connections with our child from an early age.",
         ],
         image: { src: "assets/images/story/how-we-met.jpg", alt: "The two of us sitting in a heart-shaped arch in the water" },
       },
       {
         title: "Our life together",
         text: [
-          // PLACEHOLDER
-          "This is where we'll describe what our days look like — our home, our routines and the little things we love sharing.",
+          "Our relationship is built on trust and support for each other. We feel very fortunate to have been able to create a loving home together in Darwin, complete with a tropical garden and a veggie patch. It’s our dream to raise our future child here, surrounded by nature and a strong sense of community.",
+          "Together, we love to spend time in nature, go running and hiking, play board games with friends, and travel to new places.",
         ],
         image: { src: "assets/images/story/our-life.jpg", alt: "Relaxing on the porch at home with our cat and dog" },
       },
       {
         title: "What matters to us",
         text: [
-          // PLACEHOLDER
-          "Here we'll share the values that guide us, and the kind of family we hope to grow.",
+          "We were drawn to Canada because of its altruistic and respectful approach to surrogacy. Those values now guide us as we hope to connect with a surrogate and build a genuine relationship and friendship, based on honesty and open communication.",
+          "At the same time, we understand that every surrogate will have different expectations and preferences regarding how much communication and interaction they would like, and we are committed to respecting whatever feels right to them.",
         ],
         image: { src: "assets/images/story/our-values.jpg", alt: "A family selfie with a little one" },
       },
     ],
+  },
+
+  /* -------------------------------------------------------------------
+     SECTION 3b — MEET US
+     One card per person. "details" is a list of { label, text } pairs:
+     add, remove or reorder them freely. "quote" is optional.
+     "image" is optional too; without one, the first letter of the name
+     is shown in a circle.
+     ------------------------------------------------------------------- */
+  meet: {
+    heading: "Meet Us",
+    intro: "A little more about each of us.",
+    people: [
+      {
+        name: "James",
+        age: "38 years old",
+        role: "University Professor",
+        // image: { src: "assets/images/meet/james.jpg", alt: "James" },
+        details: [
+          { label: "Communicates in", text: "English, French, and Portuguese" },
+          { label: "Occupation", text: "I'm a University Professor, where I teach linguistics and work with Indigenous communities to support the documentation and revitalisation of their languages." },
+          { label: "Sexual orientation", text: "Gay" },
+          { label: "Fun facts about me", text: "I love the holiday period around Christmas, spending time in quaint and cosy locations, exploring local markets, with a cup of mulled wine, soaking up the festive atmosphere!" },
+          { label: "Interests and hobbies", text: "In my spare time I enjoy playing and listening to music (particularly playing in community orchestras, wind ensembles and chamber music groups)." },
+        ],
+      },
+      {
+        name: "Nielisson",
+        age: "39 years old",
+        role: "Game Designer & 2D/3D Artist",
+        // image: { src: "assets/images/meet/nielisson.jpg", alt: "Nielisson" },
+        details: [
+          { label: "Communicates in", text: "English, Portuguese, and French" },
+          { label: "Occupation", text: "I'm a Game Designer and 2D/3D Artist." },
+          { label: "Sexual orientation", text: "Gay" },
+          { label: "Fun facts about me", text: "I have a bag full of souvenirs and little tokens from my travels. I tend to collect and keep random things that remind me of vacations and experiences abroad: tickets, notes, even rocks… basically anything with a story attached to it." },
+          { label: "Interests and hobbies", text: "I love creating, whether that means painting with watercolors or building robotics projects. One of my favorite things is designing educational games that make learning more engaging. I’m also a language learner and enjoy discovering new ways of seeing the world." },
+        ],
+        quote: {
+          label: "What friends say",
+          text: "Nielisson is intelligent, kind, curious, and easy to connect with. He’s curious in the sense that he takes a genuine interest in what people have to say and enjoys getting to know others. He’s very friendly and makes connections quickly. He also has a lighthearted, easygoing personality that helps people feel comfortable when meeting him for the first time. He enjoys sharing advice and helping others whenever he can.",
+          by: "Vitoria, a friend",
+        },
+      },
+    ],
+  },
+
+  /* -------------------------------------------------------------------
+     SECTION 3c — OUR SURROGACY JOURNEY
+     "facts" are the small cards at the top ({ label, value, note? }).
+     "notes" are short text blocks under them.
+     "lookingFor" is the "What we're looking for" part.
+     ------------------------------------------------------------------- */
+  journey: {
+    heading: "Our Surrogacy Journey",
+    intro: "The practical details of our journey, and what we hope for in a surrogate.",
+    facts: [
+      { label: "Journey country", value: "Canada" },
+      { label: "Relationship status", value: "Life partners", note: "Together since 2018, engaged in 2025" },
+      { label: "Embryos", value: "Ready to transfer", note: "Six PGT-A tested euploid embryos" },
+      { label: "Clinic", value: "Tripod Fertility", note: "Toronto" },
+      { label: "Agency", value: "Not using an agency" },
+      { label: "Lawyer", value: "Michelle Flowerday" },
+    ],
+    notes: [
+      {
+        title: "Our embryos",
+        text: ["Our journey began over a year ago with Tripod Fertility in Toronto. Thanks to our wonderful known egg donor, we now have six PGT-A tested euploid embryos, ready to transfer."],
+      },
+      {
+        title: "Financial preparedness",
+        text: ["We understand and are prepared for the costs associated with this journey. We have been planning this journey for a long time, and are grateful to be in a financially secure position."],
+      },
+    ],
+    lookingFor: {
+      heading: "What we're looking for",
+      intro: "Our hopes for the surrogate we will share this journey with.",
+      items: [
+        {
+          title: "Who we hope to meet",
+          text: [
+            "We hope to connect with someone who is in good health, and with whom we can form a friendship and strong connection.",
+            "We hope to meet someone who is kind, caring, and values open communication and mutual respect throughout the journey.",
+          ],
+        },
+        {
+          title: "The relationship we hope to build",
+          text: ["We would love to match with someone who is comfortable building a genuine connection with our family and staying in touch over time, if that feels right for everyone involved."],
+        },
+        {
+          title: "Views on termination",
+          text: ["We understand that difficult decisions can sometimes arise during a surrogacy journey. We would consider termination if the surrogate's health or life were at risk, or in cases of severe fetal abnormalities (where we would be guided by medical advice). We respect that everyone has their own beliefs and would like to discuss your views to ensure we're aligned from the start."],
+        },
+      ],
+    },
   },
 
   /* -------------------------------------------------------------------
@@ -409,6 +507,22 @@ window.SITE_CONTENT = {
       { src: "assets/images/closing/closing-3.jpg", alt: "The two of us inside a heart of fairy lights" },
     ],
     buttonText: "Back to the top",
+  },
+
+  /* -------------------------------------------------------------------
+     SECTION 7 — CONTACT (the box at the very end of the page)
+     Leave email, phone or links empty ("" / []) to hide them.
+     Links example:  links: [{ label: "Our profile", url: "https://..." }],
+     ------------------------------------------------------------------- */
+  contact: {
+    heading: "Get in Touch",
+    text: [
+      "We would love to hear from you. Whether you have a question, would like to know more about us, or simply want to say hello, please reach out: there's no pressure, and we'll get back to you as soon as we can.",
+    ],
+    email: "nielisson_silva@hotmail.com",                     // PLACEHOLDER — e.g. "james.and.nielisson@example.com"
+    emailText: "Send us an email",
+    phone: "",                     // Optional, e.g. "+61 400 000 000"
+    links: [],
   },
 
   /* -------------------------------------------------------------------

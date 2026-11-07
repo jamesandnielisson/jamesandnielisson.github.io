@@ -27,8 +27,11 @@
       <ul class="nav__menu" id="nav-menu">
         <li><a href="#home" data-menu="home"></a></li>
         <li><a href="#our-story" data-menu="story"></a></li>
+        <li><a href="#meet" data-menu="meet"></a></li>
+        <li><a href="#journey" data-menu="journey"></a></li>
         <li><a href="#albums" data-menu="albums"></a></li>
         <li><a href="feed.html" data-menu="feed"></a></li>
+        <li><a href="#contact" data-menu="contact"></a></li>
       </ul>
     </nav>
   </header>
@@ -80,6 +83,37 @@
       </section>
     </div>
 
+    <!-- ============ 3b. MEET US (one card each) ============ -->
+    <section class="section section--tint meet" id="meet" aria-labelledby="meet-title">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="section__title" id="meet-title"></h2>
+          <p class="section__intro" id="meet-intro"></p>
+        </header>
+        <div class="meet__grid" id="meet-grid"></div>
+        <div class="meet__together reveal" id="meet-together" hidden></div>
+      </div>
+    </section>
+
+    <!-- ============ 3c. OUR SURROGACY JOURNEY ============ -->
+    <section class="section journey" id="journey" aria-labelledby="journey-title">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="section__title" id="journey-title"></h2>
+          <p class="section__intro" id="journey-intro"></p>
+        </header>
+        <ul class="journey__facts" id="journey-facts" role="list"></ul>
+        <div class="journey__notes" id="journey-notes"></div>
+        <div class="journey__looking" id="journey-looking">
+          <header class="journey__looking-header">
+            <h3 class="journey__subtitle" id="looking-title"></h3>
+            <p class="section__intro" id="looking-intro"></p>
+          </header>
+          <div class="looking__grid" id="looking-grid"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ 4. PHOTO ALBUMS ============ -->
     <section class="section section--tint albums" id="albums" aria-labelledby="albums-title">
       <div class="container">
@@ -115,10 +149,26 @@
         <h2 class="section__title" id="closing-title"></h2>
         <div class="closing__text" id="closing-text"></div>
         <p class="closing__signature" id="closing-signature"></p>
-        <a class="button button--ghost" href="#home" id="closing-button">
-          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path d="M12 19V5m0 0-6 6m6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span></span>
-        </a>
+      </div>
+    </section>
+
+    <!-- ============ 7. CONTACT (box at the end of the page) ============ -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="container container--narrow">
+        <div class="contact-box reveal">
+          <span class="contact-box__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h2 class="contact-box__title" id="contact-title"></h2>
+          <div class="contact-box__text" id="contact-text"></div>
+          <div class="contact-box__actions" id="contact-actions"></div>
+        </div>
+        <p class="contact__top">
+          <a class="button button--ghost" href="#home" id="closing-button">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path d="M12 19V5m0 0-6 6m6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span></span>
+          </a>
+        </p>
       </div>
     </section>
   </main>

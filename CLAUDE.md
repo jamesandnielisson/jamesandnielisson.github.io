@@ -22,7 +22,7 @@ The owner is not a developer: `README.md` is the owner-facing guide (keep it in 
 ## File map
 | File | Role |
 |---|---|
-| `index.html` | Home page skeleton (sections: `#home`, video, `#our-story`, `#albums`, `#feed`, closing, footer). Empty elements with ids filled by JS. Backgrounds alternate: albums tint → feed white → closing tint. |
+| `index.html` | Home page skeleton (sections: `#home`, video, `#our-story`, `#meet`, `#journey`, `#albums`, `#feed`, closing, `#contact`, footer). Empty elements with ids filled by JS. Backgrounds alternate: video tint → story white → meet tint → journey white → albums tint → feed white → closing tint → contact white. The "Back to the top" button (`#closing-button`) now sits at the bottom of `#contact`. |
 | `feed.html` | "Our Feed" page (all posts, Instagram-style grid + post viewer). Same header/menu as home. |
 | `js/content.js` | `window.SITE_CONTENT` — **all text, image paths, albums, video, feed posts**. Sections labelled `SECTION 1 … 6`. `PLACEHOLDER` marks unwritten text. |
 | `js/feed-posts.js` | Normalises `SITE_CONTENT.feed.posts` → `window.FEED_POSTS` (sorted newest first, `id`, `dateText` en-GB, local-time date parsing). Used by both pages. |
@@ -45,14 +45,19 @@ Script load order on both pages: `content.js` → `feed-posts.js` → `main.js` 
   change/close; swipe and arrow keys ignored when the target is the video). Links use `feed.html#<id>` (id from video/image filename). `feed.previewCount` (6), `feed.showLatestOnHome`, `feed.latestLabel`.
 - Menu labels come from `SITE_CONTENT.menu` via `[data-menu]` attributes; adding a menu item = add `<li>` in **both** HTML files + a key in `menu`.
 - Section numbering in comments (`5b` = feed, `6` = closing) was kept after "5. More About Us" was removed — gaps are intentional, not missing code.
-- No Python, Node or ffmpeg on this machine: edit with the Edit tool; JS can't be syntax-checked locally, and the Chrome
-  extension can't open `file://` pages — ask the owner to check in the browser.
+- Node is now installed (v26, seen 2026-11-04): `node --check js/*.js` syntax-checks. The Chrome extension can't open
+  `file://` pages, but a tiny Node static server on 127.0.0.1 works for previews. No Python/ffmpeg.
+- Menu has 7 links, so it folds into the ☰ button below **1100px** (was 880px). Scroll-spy forces the last link (Contact) active at the page bottom.
+- Content shapes: `meet.people[] = { name, age, role, image?, details: [{label,text}], quote?: {label,text,by} }`, `meet.together`;
+  `journey = { facts: [{label,value,note?}], notes: [{title,text}], lookingFor: {heading,intro,items:[{title,text}]} }`;
+  `contact = { heading, text, email, emailText, phone, links: [{label,url}] }` (empty values hide their line).
 - `el()` sets every prop with `setAttribute`, so never pass `null`/`undefined` values (they become the string "null").
 - GitHub Pages is case-sensitive: paths in `content.js` must match filenames exactly.
 - File size limits: GitHub rejects files >100 MB; the web uploader caps at 25 MB.
 
 ## Open items / known issues
-- [ ] Many texts are still `PLACEHOLDER` in `content.js` (hero intro, story chapters, closing, example feed posts).
+- [ ] `contact.email` is empty (`PLACEHOLDER`), so the Contact box shows no email button yet — owner to choose which address to publish.
+- [ ] Still `PLACEHOLDER` in `content.js`: closing text, example feed posts.
 - [ ] `assets/images/OurPhotos/` (~180 MB of originals, incl. a `.HEIC` and a `.MOV`) **is committed to git**, although the README says to leave it out (it publishes full-size originals). Consider a `.gitignore` + removing it from the repo — ask the owner first.
 - [ ] `OurIntro.mp4` is ~90 MB: under GitHub's 100 MB limit but slow for visitors; compressing it (HandBrake) would help.
 - [ ] `assets/images/feed/` doesn't exist yet; current feed posts reuse album photos.
@@ -60,6 +65,13 @@ Script load order on both pages: `content.js` → `feed-posts.js` → `main.js` 
 - [ ] Video-post support not yet checked in a real browser (owner to verify, incl. on a phone).
 
 ## Change log (newest first)
+- **2026-11-04** — Removed the "Together" paragraph under the Meet Us cards (owner request): deleted `meet.together` from
+  `content.js`. The render code in `main.js` stays and simply hides `#meet-together` when it's missing.
+- **2026-11-04** — Added the owner's surrogacy-profile text: hero intro + all four story chapters filled in; new **Meet Us**
+  (`#meet`, profile cards for James & Nielisson), **Our Surrogacy Journey** (`#journey`: fact cards, embryos/finance notes,
+  "What we're looking for" incl. views on termination) and **Contact** box (`#contact`, end of page). Touched `content.js`
+  (`meet`, `journey`, `contact`, `menu.meet/journey/contact`), `index.html`, `feed.html` (menu), `main.js` (render code,
+  scroll-spy bottom fix), `styles.css` (new blocks, menu breakpoint 1100px), README. Checked in Chrome via local server.
 - **2026-10-24** — Livelier "Latest from our feed" card (CSS only): pulsing green dot (`--live` token, `live-ping`/`live-glow`),
   rotating conic-gradient story ring on the thumbnail (`spin`, faster on hover), green glow on hover. Looping animations are
   explicitly disabled under `prefers-reduced-motion` (the global .01ms rule would make them flicker).

@@ -180,6 +180,86 @@
     ]));
   });
 
+  /* ---------- 3b. Meet us ---------- */
+  var meet = C.meet || {};
+  var people = meet.people || [];
+  setText("meet-title", meet.heading);
+  setText("meet-intro", meet.intro);
+  if (!people.length) $("meet").hidden = true;
+  people.forEach(function (person) {
+    var avatar = person.image && person.image.src
+      ? el("span", { className: "profile__avatar" }, [image(person.image.src, person.image.alt || person.name)])
+      : el("span", { className: "profile__avatar", "aria-hidden": "true", text: (person.name || "?").charAt(0) });
+    var meta = [person.age, person.role].filter(Boolean).join(" · ");
+    var details = el("dl", { className: "profile__details" });
+    (person.details || []).forEach(function (d) {
+      details.appendChild(el("div", { className: "profile__item" }, [
+        el("dt", { text: d.label }),
+        el("dd", { text: d.text }),
+      ]));
+    });
+    var quote = null;
+    if (person.quote && person.quote.text) {
+      quote = el("figure", { className: "profile__quote" }, [
+        person.quote.label ? el("p", { className: "profile__quote-label", text: person.quote.label }) : null,
+        el("blockquote", {}, [el("p", { text: person.quote.text })]),
+        person.quote.by ? el("figcaption", { text: "— " + person.quote.by }) : null,
+      ]);
+    }
+    $("meet-grid").appendChild(el("article", { className: "profile reveal" }, [
+      el("header", { className: "profile__header" }, [
+        avatar,
+        el("div", {}, [
+          el("h3", { className: "profile__name", text: person.name }),
+          meta ? el("p", { className: "profile__meta", text: meta }) : null,
+        ]),
+      ]),
+      details,
+      quote,
+    ]));
+  });
+  if (meet.together && meet.together.text) {
+    var together = $("meet-together");
+    together.appendChild(el("h3", { className: "meet__together-title", text: meet.together.title || "Together" }));
+    together.appendChild(el("p", { text: meet.together.text }));
+    together.hidden = false;
+  }
+
+  /* ---------- 3c. Our surrogacy journey ---------- */
+  var journey = C.journey || {};
+  setText("journey-title", journey.heading);
+  setText("journey-intro", journey.intro);
+  if (!journey.heading) $("journey").hidden = true;
+  (journey.facts || []).forEach(function (f) {
+    $("journey-facts").appendChild(el("li", { className: "fact reveal" }, [
+      el("span", { className: "fact__label", text: f.label }),
+      el("span", { className: "fact__value", text: f.value }),
+      f.note ? el("span", { className: "fact__note", text: f.note }) : null,
+    ]));
+  });
+  if (!$("journey-facts").children.length) $("journey-facts").hidden = true;
+  (journey.notes || []).forEach(function (n) {
+    var body = el("div", { className: "journey-note__text" });
+    paragraphs(body, n.text);
+    $("journey-notes").appendChild(el("article", { className: "journey-note reveal" }, [
+      el("h3", { className: "journey-note__title", text: n.title }),
+      body,
+    ]));
+  });
+  if (!$("journey-notes").children.length) $("journey-notes").hidden = true;
+  var looking = journey.lookingFor || {};
+  setText("looking-title", looking.heading);
+  setText("looking-intro", looking.intro);
+  (looking.items || []).forEach(function (item) {
+    var body = el("div", { className: "looking-card__text" });
+    paragraphs(body, item.text);
+    $("looking-grid").appendChild(el("article", { className: "looking-card reveal" }, [
+      el("h4", { className: "looking-card__title", text: item.title }),
+      body,
+    ]));
+  });
+  if (!looking.heading && !(looking.items || []).length) $("journey-looking").hidden = true;
+
   /* ---------- 4. Albums ---------- */
   var albums = (C.albums && C.albums.list) || [];
   setText("albums-title", C.albums && C.albums.heading);
@@ -275,6 +355,33 @@
   });
   if (!$("closing-collage").children.length) $("closing-collage").hidden = true;
 
+  /* ---------- 7. Contact ---------- */
+  var contact = C.contact || {};
+  setText("contact-title", contact.heading || "Get in Touch");
+  paragraphs($("contact-text"), contact.text);
+  var actions = $("contact-actions");
+  var arrowSvg = '<svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var email = (contact.email || "").trim();
+  if (email) {
+    var mail = el("a", { className: "button", href: "mailto:" + email }, [el("span", { text: contact.emailText || "Send us an email" })]);
+    mail.insertAdjacentHTML("beforeend", arrowSvg);
+    actions.appendChild(mail);
+    actions.appendChild(el("p", { className: "contact-box__line" }, [el("a", { href: "mailto:" + email, text: email })]));
+  }
+  var phone = (contact.phone || "").trim();
+  if (phone) {
+    actions.appendChild(el("p", { className: "contact-box__line" }, [
+      el("a", { href: "tel:" + phone.replace(/[^\d+]/g, ""), text: phone }),
+    ]));
+  }
+  (contact.links || []).forEach(function (link) {
+    if (!link || !link.url) return;
+    actions.appendChild(el("p", { className: "contact-box__line" }, [
+      el("a", { href: link.url, target: "_blank", rel: "noopener", text: link.label || link.url }),
+    ]));
+  });
+  if (!actions.children.length) actions.hidden = true;
+
   /* ---------- Footer ---------- */
   setText("footer-text", C.footer);
   setText("footer-year", String(new Date().getFullYear()));
@@ -323,6 +430,10 @@
       tracked.forEach(function (section, i) {
         if (section && section.getBoundingClientRect().top <= line) current = i;
       });
+      // At the very bottom, the last section (Contact) can't reach the line, so highlight it anyway
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        for (var k = tracked.length - 1; k >= 0; k--) { if (tracked[k]) { current = k; break; } }
+      }
       menuLinks.forEach(function (a, i) {
         var active = i === current;
         a.classList.toggle("is-active", active);

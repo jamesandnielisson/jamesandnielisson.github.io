@@ -47,6 +47,11 @@ All images named `placeholder-….svg` are temporary stand-ins. Each one shows t
 
 Things still waiting for your own words are marked `PLACEHOLDER`.
 
+The newer sections work the same way:
+- **`SECTION 3b — MEET US`**: one card per person. Each card has a list of `details` (`{ label: "…", text: "…" }`) you can add to, remove or reorder, and an optional `quote` (the "What friends say" box). To show a photo instead of the letter in the circle, remove the `//` in front of the `image:` line and put the photo in `assets/images/meet/`.
+- **`SECTION 3c — OUR SURROGACY JOURNEY`**: the small fact cards (`facts`), the two text blocks under them (`notes`) and the "What we're looking for" cards (`lookingFor`).
+- **`SECTION 7 — CONTACT`**: the box at the very end of the page. Fill in `email` (and optionally `phone` or `links`) and the matching buttons/lines appear; leave them empty (`""`) to hide them.
+
 Paragraphs are written as a list, one paragraph per line:
 
 ```js

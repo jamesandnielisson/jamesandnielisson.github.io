@@ -193,7 +193,7 @@ button { font: inherit; color: inherit; }
 .nav__toggle[aria-expanded="true"] .nav__toggle-bars::before { transform: translateY(7px) rotate(45deg); }
 .nav__toggle[aria-expanded="true"] .nav__toggle-bars::after { transform: translateY(-7px) rotate(-45deg); }
 
-@media (max-width: 880px) {   /* below this the menu folds into the ☰ button */
+@media (max-width: 1100px) {   /* below this the menu folds into the ☰ button (7 links need the room) */
   .nav__toggle { display: block; }
   .nav__menu {
     position: absolute; left: 0; right: 0; top: var(--header-h);
@@ -440,6 +440,109 @@ button { font: inherit; color: inherit; }
   .chapter:nth-child(even) .chapter__media { order: 0; }
   .chapter__media img { aspect-ratio: 4 / 3; }
 }
+
+/* ---------- 3b. Meet us ---------- */
+.meet__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  align-items: start;
+}
+.profile {
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+.profile__header {
+  display: flex; align-items: center; gap: 1.1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--beige);
+}
+.profile__avatar {
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  width: 72px; height: 72px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--sage);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: 2rem;
+}
+.profile__avatar img { width: 100%; height: 100%; object-fit: cover; }
+.profile__name { margin: 0; font-size: clamp(1.6rem, 1.3rem + 1vw, 2.1rem); }
+.profile__meta { margin: .2rem 0 0; color: var(--muted); font-weight: 600; font-size: .95rem; }
+.profile__details { margin: 0; display: grid; gap: 1.1rem; }
+.profile__item dt,
+.profile__quote-label,
+.fact__label {
+  margin-bottom: .25rem;
+  color: var(--clay-dark);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.profile__item dd { margin: 0; color: var(--muted); }
+.profile__quote {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.4rem;
+  background: var(--cream);
+  border-left: 3px solid var(--clay);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.profile__quote blockquote { margin: 0; font-family: var(--font-heading); font-style: italic; font-size: 1.05rem; color: var(--ink); }
+.profile__quote figcaption { margin-top: .75rem; color: var(--muted); font-size: .9rem; font-weight: 600; }
+.meet__together { max-width: 40rem; margin: clamp(2.5rem, 5vw, 3.5rem) auto 0; text-align: center; color: var(--muted); font-size: 1.08em; }
+.meet__together-title { margin-bottom: .4rem; font-size: 1.5rem; color: var(--ink); }
+
+@media (max-width: 760px) {
+  .meet__grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- 3c. Our surrogacy journey ---------- */
+.journey__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  list-style: none; margin: 0; padding: 0;
+}
+.fact {
+  display: flex; flex-direction: column;
+  padding: 1.25rem 1.4rem;
+  background: var(--sand);
+  border-radius: var(--radius);
+}
+.fact__value { font-family: var(--font-heading); font-size: 1.3rem; line-height: 1.25; color: var(--ink); }
+.fact__note { margin-top: .3rem; color: var(--muted); font-size: .92rem; }
+.journey__notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+.journey-note { padding-left: 1.25rem; border-left: 3px solid var(--sage); }
+.journey-note__title { font-size: 1.4rem; margin-bottom: .4rem; }
+.journey-note__text { color: var(--muted); }
+.journey__looking { margin-top: clamp(3.5rem, 7vw, 5rem); }
+.journey__looking-header { text-align: center; max-width: 640px; margin: 0 auto clamp(2rem, 4vw, 2.75rem); }
+.journey__subtitle { font-size: clamp(1.7rem, 1.3rem + 1.6vw, 2.4rem); }
+.looking__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+.looking-card {
+  padding: clamp(1.4rem, 3vw, 2rem);
+  background: var(--white);
+  border: 1px solid var(--beige);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+.looking-card__title { margin: 0 0 .6rem; font-family: var(--font-heading); font-weight: 400; font-size: 1.35rem; line-height: 1.2; }
+.looking-card__text { color: var(--muted); }
 
 /* ---------- 4. Albums ---------- */
 .albums__grid {
@@ -792,6 +895,35 @@ dialog::backdrop { background: rgba(35, 31, 27, .6); }
   font-size: 1.35rem;
   color: var(--ink);
 }
+.closing__signature:last-child { margin-bottom: 0; }
+
+/* ---------- 7. Contact ---------- */
+.contact-box {
+  max-width: 620px;
+  margin-inline: auto;
+  padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 5vw, 3rem);
+  text-align: center;
+  background: var(--white);
+  border: 1px solid var(--beige);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+.contact-box__icon {
+  display: inline-grid; place-items: center;
+  width: 60px; height: 60px;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  background: #e8ede3;
+  color: var(--sage-dark);
+}
+.contact-box__title { font-size: clamp(1.8rem, 1.4rem + 1.6vw, 2.5rem); }
+.contact-box__text { color: var(--muted); max-width: 30rem; margin-inline: auto; }
+.contact-box__actions {
+  display: flex; flex-direction: column; align-items: center; gap: .6rem;
+  margin-top: 1.75rem;
+}
+.contact-box__line { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.contact__top { margin: clamp(2.5rem, 5vw, 3.5rem) 0 0; text-align: center; }
 
 /* ---------- Footer ---------- */
 .site-footer {
