@@ -51,6 +51,8 @@ Script load order on both pages: `content.js` → `feed-posts.js` → `main.js` 
 - Content shapes: `meet.people[] = { name, age, role, image?, details: [{label,text}], quote?: {label,text,by} }`, `meet.together`;
   `journey = { facts: [{label,value,note?}], notes: [{title,text}], lookingFor: {heading,intro,items:[{title,text}]} }`;
   `contact = { heading, text, email, emailText, phone, links: [{label,url}] }` (empty values hide their line).
+- Story chapter `image: { src, alt, fit? }` — `fit: "whole"` disables the 4:5 (desktop) / 4:3 (mobile) cover crop.
+- Resizing images without Python: PowerShell `System.Drawing` works (rotate by EXIF tag 274 first).
 - `el()` sets every prop with `setAttribute`, so never pass `null`/`undefined` values (they become the string "null").
 - GitHub Pages is case-sensitive: paths in `content.js` must match filenames exactly.
 - File size limits: GitHub rejects files >100 MB; the web uploader caps at 25 MB.
@@ -65,6 +67,10 @@ Script load order on both pages: `content.js` → `feed-posts.js` → `main.js` 
 - [ ] Video-post support not yet checked in a real browser (owner to verify, incl. on a phone).
 
 ## Change log (newest first)
+- **2026-11-08** — New photos for all four story chapters (from `OurPhotos/New/`, resized ≤1600 px with EXIF rotation via
+  PowerShell System.Drawing) → `assets/images/story/{who-we-are-christmas,how-we-met-paris,our-life-paris,what-matters-christmas-dinner}.jpg`.
+  Added optional `image.fit: "whole"` for story chapters (`main.js` → `.chapter__media--whole`, `styles.css`: no 4:5 crop),
+  used for the wide Paris collage and the landscape Christmas-dinner photo. Old story images left in place (unused). README updated.
 - **2026-11-04** — Removed the "Together" paragraph under the Meet Us cards (owner request): deleted `meet.together` from
   `content.js`. The render code in `main.js` stays and simply hides `#meet-together` when it's missing.
 - **2026-11-04** — Added the owner's surrogacy-profile text: hero intro + all four story chapters filled in; new **Meet Us**

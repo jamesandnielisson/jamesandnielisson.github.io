@@ -89,6 +89,11 @@ A few rules keep things working:
    ```
 3. The `alt` text describes the photo for people using screen readers. Write a short, honest description.
 4. Delete the old `placeholder-….svg` file once nothing uses it any more.
+5. **"Our Story" photos** are trimmed to a tall frame. For a wide photo or a collage that shouldn't be cut off, add
+   `fit: "whole"` and the whole photo is shown instead:
+   ```js
+   image: { src: "assets/images/story/how-we-met-paris.jpg", alt: "…", fit: "whole" },
+   ```
 
 ### Adding photos to an album
 1. Copy the photos into the album's folder, for example `assets/images/albums/travel/`.

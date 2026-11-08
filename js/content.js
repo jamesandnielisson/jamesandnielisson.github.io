@@ -97,7 +97,7 @@ window.SITE_CONTENT = {
           "We're Nielisson (left) and James (right), a couple from Darwin, Australia, who love travelling, discovering new places, and making memories around the world. Now, we’re dreaming of our next big adventure: building a family together ❤️.",
           "Becoming parents has long been one of our greatest dreams, and we are so ready to welcome a child into the loving family and home we have been building together. We are deeply grateful to be on this journey, and for this opportunity to build a genuine connection with a surrogate based on trust, respect, kindness, and open communication.",
         ],
-        image: { src: "assets/images/story/who-we-are.jpg", alt: "A selfie of the two of us high above a bay" },
+        image: { src: "assets/images/story/who-we-are-christmas.jpg", alt: "A smiling selfie of the two of us in front of our Christmas tree" },
       },
       {
         title: "How we met",
@@ -105,7 +105,7 @@ window.SITE_CONTENT = {
           "We met in Paris in 2018, while both living and working there: Nielisson was studying Game Design and James was finishing his PhD in Linguistics. We have been together ever since, got engaged at the start of 2025 in our favourite park, Parc des Buttes-Chaumont, and are looking forward to getting married next year.",
           "Although we now call Australia home, Paris will always hold a special place in our hearts. We both speak French, along with a few other languages, and one of the things we’re most excited about as future parents is sharing those languages, cultures, and connections with our child from an early age.",
         ],
-        image: { src: "assets/images/story/how-we-met.jpg", alt: "The two of us sitting in a heart-shaped arch in the water" },
+        image: { src: "assets/images/story/how-we-met-paris.jpg", alt: "A collage of our early days in Paris: selfies, the Eiffel Tower at night and a heart-shaped potato", fit: "whole" },
       },
       {
         title: "Our life together",
@@ -113,7 +113,7 @@ window.SITE_CONTENT = {
           "Our relationship is built on trust and support for each other. We feel very fortunate to have been able to create a loving home together in Darwin, complete with a tropical garden and a veggie patch. It’s our dream to raise our future child here, surrounded by nature and a strong sense of community.",
           "Together, we love to spend time in nature, go running and hiking, play board games with friends, and travel to new places.",
         ],
-        image: { src: "assets/images/story/our-life.jpg", alt: "Relaxing on the porch at home with our cat and dog" },
+        image: { src: "assets/images/story/our-life-paris.jpg", alt: "The two of us walking hand in hand through a crowded Paris street" },
       },
       {
         title: "What matters to us",
@@ -121,7 +121,7 @@ window.SITE_CONTENT = {
           "We were drawn to Canada because of its altruistic and respectful approach to surrogacy. Those values now guide us as we hope to connect with a surrogate and build a genuine relationship and friendship, based on honesty and open communication.",
           "At the same time, we understand that every surrogate will have different expectations and preferences regarding how much communication and interaction they would like, and we are committed to respecting whatever feels right to them.",
         ],
-        image: { src: "assets/images/story/our-values.jpg", alt: "A family selfie with a little one" },
+        image: { src: "assets/images/story/what-matters-christmas-dinner.jpg", alt: "Christmas dinner with family, everyone wearing paper crowns", fit: "whole" },
       },
     ],
   },

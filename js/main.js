@@ -168,7 +168,7 @@
     var text = el("div", { className: "chapter__text" });
     paragraphs(text, ch.text);
     var media = ch.image && ch.image.src
-      ? el("figure", { className: "chapter__media" }, [image(ch.image.src, ch.image.alt)])
+      ? el("figure", { className: "chapter__media" + (ch.image.fit === "whole" ? " chapter__media--whole" : "") }, [image(ch.image.src, ch.image.alt)])
       : null;
     $("story-chapters").appendChild(el("article", { className: "chapter reveal" }, [
       media,
