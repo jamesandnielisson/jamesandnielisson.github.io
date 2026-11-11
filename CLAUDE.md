@@ -29,7 +29,7 @@ The owner is not a developer: `README.md` is the owner-facing guide (keep it in 
 | `js/main.js` | Builds the home page from content: hero (+ "latest feed post" peek card), video, story, albums + lightbox, feed preview, closing, menu/scroll-spy, reveal-on-scroll. |
 | `js/feed.js` | Builds `feed.html`: profile header, grid, post viewer, menu toggle. |
 | `css/styles.css` | All styles (~820 lines). Tokens in `:root` at top (colours, fonts, radius, shadows, `--header-h`). |
-| `assets/images/{hero,story,albums/<name>,closing}` | Resized site images (≤1600 px). Album folders: life-together, family-friends, travel, nature, animals, everyday-moments, celebrations. |
+| `assets/images/{hero,story,albums/<name>,closing}` | Resized site images (≤1600 px). Album folders (5, fused 2026-11-11): life-together, family-friends, holidays-celebrations, travel-nature, everyday-animals. Also `meet/` (avatars), `feed/`. |
 | `assets/images/OurPhotos/` | Owner's full-size originals (~180 MB). **Not used by the site.** Source for new resized images. |
 | `assets/videos/OurIntro.mp4` (+ `poster.jpg`) | Intro video, ~90 MB. |
 | `assets/videos/Our_Vacation_2023-2024_Brazil.mp4` | Feed video post, ~13 MB. |
@@ -37,6 +37,9 @@ The owner is not a developer: `README.md` is the owner-facing guide (keep it in 
 Script load order on both pages: `content.js` → `feed-posts.js` → `main.js` | `feed.js`.
 
 ## Architecture notes / gotchas
+- **No repeated images** (owner rule, 2026-11-11): each photo appears once across hero/story/meet/albums/feed/closing
+  (feed avatar = hero photo is the only exception). Feed photos live in `assets/images/feed/`, not borrowed from albums.
+  A dHash check (PowerShell System.Drawing, 9x8 grayscale) catches near-duplicates that file hashes miss.
 - Album photos: `folder` + `photos: ["a.jpg", {file, caption}]`; optional `cover`. First photo = cover by default.
 - Feed post shape: `{ image?, video?, alt, date: "YYYY-MM-DD", place?, text: string|string[], id? }` — needs `image` or `video`
   (both = image is the video's poster). `FEED_POSTS[i].src` is the image ("" for video-only), `.video` the mp4. Thumbnails go
@@ -58,15 +61,34 @@ Script load order on both pages: `content.js` → `feed-posts.js` → `main.js` 
 - File size limits: GitHub rejects files >100 MB; the web uploader caps at 25 MB.
 
 ## Open items / known issues
-- [ ] `contact.email` is empty (`PLACEHOLDER`), so the Contact box shows no email button yet — owner to choose which address to publish.
 - [ ] Still `PLACEHOLDER` in `content.js`: closing text, example feed posts.
 - [ ] `assets/images/OurPhotos/` (~180 MB of originals, incl. a `.HEIC` and a `.MOV`) **is committed to git**, although the README says to leave it out (it publishes full-size originals). Consider a `.gitignore` + removing it from the repo — ask the owner first.
 - [ ] `OurIntro.mp4` is ~90 MB: under GitHub's 100 MB limit but slow for visitors; compressing it (HandBrake) would help.
-- [ ] `assets/images/feed/` doesn't exist yet; current feed posts reuse album photos.
+- [ ] Feed: 7 real posts (texts drafted by Claude, owner to check) + Brazil video. `IMG_2425.MOV` in `OurPhotos/2026-11/` not used (no ffmpeg to convert/preview).
+- [ ] `closing-2.jpg` and `story/who-we-are-christmas.jpg` are near-identical shots of the same Christmas-tree selfie; owner said keep home photos, so left as is — ask if they want a different closing photo.
 - [ ] Brazil video post: date set to 2026-10-24 (so it shows first) and text is a placeholder — owner to confirm/replace. Could get a cover `image:`.
 - [ ] Video-post support not yet checked in a real browser (owner to verify, incl. on a phone).
 
 ## Change log (newest first)
+- **2026-11-11 (albums)** — Fused 8 albums into 5 and removed repeats. Holidays & Celebrations (= winter-holidays + celebrations),
+  Travel & Nature (= travel + nature), Everyday Life & Animal Friends (= everyday-moments + animals); folders renamed/merged to match.
+  Deleted 8 duplicates (album copies of hero/closing/story photos, porch-with-pets twin, giant-fruit twin). Removed the 12
+  placeholder feed posts (all reused album photos); buttes-chaumont / toronto-christmas / praia-do-amor moved to `feed/` (feed-only).
+  Only `content.js` + image folders + docs touched. (Pre-change content.js was backed up in the session scratchpad only; use git.)
+- **2026-11-11 (later)** — Owner wanted the home page kept simple: removed the surrogate callout box and the top `.hero-flag` link
+  entirely (content, HTML, JS, CSS, README). Instead added one sentence to the end of the first `hero.intro` paragraph:
+  "We're excited to connect with a surrogate to continue our journey to build our family."
+- **2026-11-11** — Owner requests: (1) "We're looking for a surrogate" box in the hero (`hero.callout` in `content.js`;
+  `#hero-callout` in `index.html`; render code in `main.js`, which also inserts a matching `.hero-flag` link above the eyebrow so
+  it's seen above the fold; `.callout*`, `.hero-flag`, `.button--clay`, `heartbeat` keyframes in `styles.css`). (2) Removed
+  "Sexual orientation" from both Meet Us cards; quote byline now just "Vitoria". (3) Closing signature without "With warmth,".
+  (4) Contact email → jamesonAU2026@gmail.com. (5) Meet Us avatars: `assets/images/meet/{james,nielisson}.jpg` (400px face crops
+  from a sunset selfie; avatar now 84px with a white/sage ring). (6) 20 new photos from `newphotos/` resized (screenshots cropped):
+  new album "Christmas & Winter Holidays" (`albums/winter-holidays/`, + christmas-tree/dinner moved from `celebrations/`), new
+  "Celebrations" album (the folder existed but was never wired up), additions to life-together / family-friends / travel, and
+  7 real dated feed posts (`assets/images/feed/` now exists). Owner asked to keep hero/meet/journey photos unchanged (story too).
+  Originals archived to `OurPhotos/2026-11/` (incl. `IMG_2425.MOV`, unused); `IMG_3097.JPG` was a duplicate of `dinner-out.jpg`
+  and deleted; 4 unused old story images deleted. README updated. Checked in Chrome via local server.
 - **2026-11-08** — New photos for all four story chapters (from `OurPhotos/New/`, resized ≤1600 px with EXIF rotation via
   PowerShell System.Drawing) → `assets/images/story/{who-we-are-christmas,how-we-met-paris,our-life-paris,what-matters-christmas-dinner}.jpg`.
   Added optional `image.fit: "whole"` for story chapters (`main.js` → `.chapter__media--whole`, `styles.css`: no 4:5 crop),

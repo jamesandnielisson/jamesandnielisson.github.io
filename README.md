@@ -17,14 +17,16 @@ assets/
     hero/               The big photo at the top
     story/              Photos for the "Our Story" chapters
     albums/
-      life-together/    One folder per album
+      life-together/          One folder per album
       family-friends/
-      travel/
-      nature/
-      animals/
-      everyday-moments/
-    OurPhotos/          Your original, full-size photos (not used by the site — see note below)
-    feed/               Photos for your Feed posts (create it when you add your first one)
+      holidays-celebrations/
+      travel-nature/
+      everyday-animals/
+    meet/               The round head photos on the Meet Us cards
+    OurPhotos/          Your original, full-size photos (not used by the site — see note below);
+                        OurPhotos/2026-11/ holds the originals of the November 2026 batch
+    feed/               Photos used only by Feed posts (each photo is used in one place only:
+                        an album, a Feed post, or a home-page section, so nothing repeats)
     closing/            Photos for the closing collage
   videos/               Your introduction video (and its poster image)
 feed.html               The "Our Feed" page (all posts)
@@ -48,7 +50,7 @@ All images named `placeholder-….svg` are temporary stand-ins. Each one shows t
 Things still waiting for your own words are marked `PLACEHOLDER`.
 
 The newer sections work the same way:
-- **`SECTION 3b — MEET US`**: one card per person. Each card has a list of `details` (`{ label: "…", text: "…" }`) you can add to, remove or reorder, and an optional `quote` (the "What friends say" box). To show a photo instead of the letter in the circle, remove the `//` in front of the `image:` line and put the photo in `assets/images/meet/`.
+- **`SECTION 3b — MEET US`**: one card per person. Each card has a list of `details` (`{ label: "…", text: "…" }`) you can add to, remove or reorder, and an optional `quote` (the "What friends say" box). The round photo comes from `image:` (files in `assets/images/meet/`, square photos work best); delete the `image:` line to show the first letter of the name instead.
 - **`SECTION 3c — OUR SURROGACY JOURNEY`**: the small fact cards (`facts`), the two text blocks under them (`notes`) and the "What we're looking for" cards (`lookingFor`).
 - **`SECTION 7 — CONTACT`**: the box at the very end of the page. Fill in `email` (and optionally `phone` or `links`) and the matching buttons/lines appear; leave them empty (`""`) to hide them.
 
@@ -96,7 +98,7 @@ A few rules keep things working:
    ```
 
 ### Adding photos to an album
-1. Copy the photos into the album's folder, for example `assets/images/albums/travel/`.
+1. Copy the photos into the album's folder, for example `assets/images/albums/travel-nature/`.
 2. In `content.js`, find that album and add the file names to its `photos` list:
    ```js
    photos: [
