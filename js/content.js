@@ -286,7 +286,7 @@ window.SITE_CONTENT = {
       },
       {
         title: "Holidays & Celebrations",
-        description: "Christmas markets, winter getaways, birthdays and special nights out. Christmas is James's favourite time of year!",
+        description: "Christmas markets, winter getaways, birthdays and special nights out. Our favourite time of year!",
         folder: "assets/images/albums/holidays-celebrations/",
         photos: [
           { file: "paris-christmas-market.jpg", caption: "Christmas Eve at a Christmas market in Paris (2022).", alt: "A selfie of us at a Christmas market in Paris" },
@@ -306,6 +306,7 @@ window.SITE_CONTENT = {
         title: "Travel & Nature",
         description: "Places we've explored together: cities, forests, mountains, snow and water.",
         folder: "assets/images/albums/travel-nature/",
+        cover: "canoe-paddle.jpg",
         photos: [
           { file: "top-of-the-world.jpg", caption: "Pedra Bonita, Rio de Janeiro, Brazil", alt: "Arms raised on a mountain top above the city" },
           { file: "mountain-view.jpg", caption: "We found a cool spot in Rio for an epic photo.", alt: "The two of us on rocks in front of a mountain peak" },

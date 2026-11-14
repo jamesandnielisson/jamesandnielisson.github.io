@@ -71,6 +71,7 @@ Script load order on both pages: `content.js` → `feed-posts.js` → `main.js` 
 - [ ] Video-post support not yet checked in a real browser (owner to verify, incl. on a phone).
 
 ## Change log (newest first)
+- **2026-11-14** — Travel & Nature album cover set to `canoe-paddle.jpg` (`cover:` in `content.js`); photo order unchanged.
 - **2026-11-14 (contact form)** — Formspree form (`xyewkval`) replaces the email button in the Contact box. Config in
   `contact.form` (`content.js`); `buildContactForm()` in `main.js` posts via `fetch` (Accept: application/json, no library) with
   plain action/method fallback, `_gotcha` honeypot, `_subject`; status line `.contact-form__status.is-success/is-error`.
