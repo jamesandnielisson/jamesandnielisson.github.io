@@ -64,12 +64,22 @@ Script load order on both pages: `content.js` → `feed-posts.js` → `main.js` 
 - [ ] Still `PLACEHOLDER` in `content.js`: closing text, example feed posts.
 - [ ] `assets/images/OurPhotos/` (~180 MB of originals, incl. a `.HEIC` and a `.MOV`) **is committed to git**, although the README says to leave it out (it publishes full-size originals). Consider a `.gitignore` + removing it from the repo — ask the owner first.
 - [ ] `OurIntro.mp4` is ~90 MB: under GitHub's 100 MB limit but slow for visitors; compressing it (HandBrake) would help.
-- [ ] Feed: 7 real posts (texts drafted by Claude, owner to check) + Brazil video. `IMG_2425.MOV` in `OurPhotos/2026-11/` not used (no ffmpeg to convert/preview).
+- [ ] Feed: 6 real posts (texts drafted by Claude, owner to check) + Brazil video. `IMG_2425.MOV` in `OurPhotos/2026-11/` not used (no ffmpeg to convert/preview).
 - [ ] `closing-2.jpg` and `story/who-we-are-christmas.jpg` are near-identical shots of the same Christmas-tree selfie; owner said keep home photos, so left as is — ask if they want a different closing photo.
 - [ ] Brazil video post: date set to 2026-10-24 (so it shows first) and text is a placeholder — owner to confirm/replace. Could get a cover `image:`.
+- [ ] Contact form not yet tested live (fetch to Formspree fails on `file://` previews? it should work, but verify the first submission / Formspree confirmation on the live site).
 - [ ] Video-post support not yet checked in a real browser (owner to verify, incl. on a phone).
 
 ## Change log (newest first)
+- **2026-11-14 (contact form)** — Formspree form (`xyewkval`) replaces the email button in the Contact box. Config in
+  `contact.form` (`content.js`); `buildContactForm()` in `main.js` posts via `fetch` (Accept: application/json, no library) with
+  plain action/method fallback, `_gotcha` honeypot, `_subject`; status line `.contact-form__status.is-success/is-error`.
+  Email address only shown when `form.orText` is set, or when `form.endpoint` is empty. `.contact-form*` CSS. README updated.
+- **2026-11-14 (albums)** — Owner removals: family-meal + evening-walk (Family & Friends), concert-night (Holidays),
+  forest-vines + rainforest-path + snowy-lookout (Travel & Nature), reading-corner (animals album); image files deleted.
+  "Everyday Life & Animal Friends" renamed "Animal Friends" (description no longer mentions everyday life; folder still
+  `everyday-animals/`). beach-clean-up.jpg moved to `travel-nature/` (last photo of Travel & Nature). `content.js` only.
+  Also removed the gym feed post (paris-workout.jpg, deleted); 6 photo posts + Brazil video remain.
 - **2026-11-11 (albums)** — Fused 8 albums into 5 and removed repeats. Holidays & Celebrations (= winter-holidays + celebrations),
   Travel & Nature (= travel + nature), Everyday Life & Animal Friends (= everyday-moments + animals); folders renamed/merged to match.
   Deleted 8 duplicates (album copies of hero/closing/story photos, porch-with-pets twin, giant-fruit twin). Removed the 12

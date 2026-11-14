@@ -53,6 +53,7 @@ The newer sections work the same way:
 - **`SECTION 3b — MEET US`**: one card per person. Each card has a list of `details` (`{ label: "…", text: "…" }`) you can add to, remove or reorder, and an optional `quote` (the "What friends say" box). The round photo comes from `image:` (files in `assets/images/meet/`, square photos work best); delete the `image:` line to show the first letter of the name instead.
 - **`SECTION 3c — OUR SURROGACY JOURNEY`**: the small fact cards (`facts`), the two text blocks under them (`notes`) and the "What we're looking for" cards (`lookingFor`).
 - **`SECTION 7 — CONTACT`**: the box at the very end of the page. Fill in `email` (and optionally `phone` or `links`) and the matching buttons/lines appear; leave them empty (`""`) to hide them.
+  The box also has a **contact form** (`form:`): messages are sent through Formspree (form `xyewkval`) and arrive in the inbox linked to your Formspree account. While the form is on, the email button is hidden; set `orText` (e.g. `"Or email us directly:"`) to show your address under the form too, or set `endpoint: ""` to remove the form and bring the email button back. Test it once on the live site: Formspree may ask you to confirm the first message.
 
 Paragraphs are written as a list, one paragraph per line:
 

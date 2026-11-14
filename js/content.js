@@ -281,8 +281,6 @@ window.SITE_CONTENT = {
           { file: "beach-with-friend.jpg", caption: "This is Nielisson's mother, Irani.", alt: "At the beach with a friend" },
           { file: "city-lookout.jpg", caption: "Jame's mother and one of his brother. We went to a park in Perth that day.", alt: "With family at a city lookout" },
           { file: "dinner-out.jpg", caption: "This is Nielisson's aunt and his cousins. My cousin Kaline has two beautiful girls.", alt: "Dinner out with family" },
-            { file: "family-meal.jpg", caption: "This is Nielisson's aunt and his cousins. My cousin Kaline has two beautiful girls.", alt: "A family meal with the kids" },
-            { file: "evening-walk.jpg", caption: "This is Nielisson's aunt and his cousins. My cousin Kaline has two beautiful girls.", alt: "An evening walk with the kids" },
           { file: "mirror-selfie.jpg", caption: "Just before going to the Pride in Paris.", alt: "A group mirror selfie with friends" },
         ],
       },
@@ -300,7 +298,6 @@ window.SITE_CONTENT = {
           { file: "paris-by-the-seine.jpg", caption: "A winter evening by the Seine in Paris.", alt: "A selfie of us by the Seine at night" },
           { file: "winter-sunshine.jpg", caption: "Our favorite cute city near Paris: Auvers-sur-Oise.", alt: "A selfie of us in a park with bare winter trees" },
           { file: "birthday-balloons.jpg", caption: "I made a cake for James!", alt: "A birthday table full of balloons and a cake" },
-          { file: "concert-night.jpg", caption: "delete", alt: "An orchestra on stage at a concert" },
           { file: "dressed-up.jpg", caption: "<3", alt: "James dressed up in a shirt and tie" },
           { file: "lantern-night.jpg", caption: "We got all dressed up for a friend's wedding.", alt: "The two of us under lanterns and fairy lights" },
         ],
@@ -320,27 +317,23 @@ window.SITE_CONTENT = {
           { file: "museum-visit.jpg", caption: "This was when we went to an exhibition about indigenous communities (Brazil)", alt: "At a museum exhibition" },
           { file: "above-the-clouds.jpg", caption: "Hiking above a sea of clouds.", alt: "A selfie of us on a hike above a sea of clouds" },
           { file: "giant-tree.jpg", caption: "This white foam behind us is simply CLOUDS (France).", alt: "Standing at the foot of a giant tree" },
-          { file: "forest-vines.jpg", caption: "Among the vines deep in the forest.", alt: "Among the vines in a forest" },
-          { file: "rainforest-path.jpg", caption: "delete", alt: "Walking a rainforest path" },
           { file: "rock-cave.jpg", caption: "Climbing out of a little rock cave.", alt: "Climbing out of a small rock cave" },
           { file: "jungle-ruins.jpg", caption: "An old stone tower hidden in the jungle.", alt: "An old stone tower in the jungle" },
           { file: "wild-sculpture.jpg", caption: "Conversing with Nature itself :)", alt: "Sitting next to a wooden sculpture in a park" },
           { file: "canoe-paddle.jpg", caption: "Canoeing for the first time with James.", alt: "Paddling a blue canoe on a lake" },
           { file: "snowy-park.jpg", caption: "It's hard to see, but a bird landed on James's face.", alt: "A walk in a snowy park" },
-          { file: "snowy-lookout.jpg", caption: "And the same cute bird landed on my finger", alt: "At a snowy lookout among the trees" },
             { file: "wetlands-dusk.jpg", caption: "We went on a boat trip to see some crocodiles 🐊", alt: "Wetlands at dusk" },
           { file: "giant-fruit-together.jpg", caption: "We visited the biggest cashew tree (Brazil).", alt: "The two of us holding up a giant fruit sculpture" },
+          { file: "beach-clean-up.jpg", caption: "Volunteering together at a beach clean-up organized by Sea Shepherd.", alt: "The two of us volunteering at a beach clean-up" },
         ],
       },
       {
-        title: "Everyday Life & Animal Friends",
-        description: "Ordinary days at home, the pets we love and the wildlife we've met along the way.",
+        title: "Animal Friends",
+        description: "The pets we love and the wildlife we've met along the way.",
         folder: "assets/images/albums/everyday-animals/",
         photos: [
           { file: "porch-with-pets.jpg", caption: "At our friend's house who has 13 cats and 2 dogs.", alt: "Relaxing on the porch with a cat and a dog" },
           { file: "dogs-at-home.jpg", caption: "James is surrounded!", alt: "At home with the dogs" },
-          { file: "reading-corner.jpg", caption: "delete", alt: "Reading on a cosy beanbag" },
-          { file: "beach-clean-up.jpg", caption: "Volunteering together at a beach clean-up organized by Sea Shepherd.", alt: "The two of us volunteering at a beach clean-up" },
           { file: "car-full-of-dogs.jpg", caption: "James taking care of his friend's dogs.", alt: "A car full of happy dogs" },
           { file: "dog-cuddle.jpg", caption: "Meet Diesel. He is too cute!", alt: "Cuddling a scruffy little dog" },
           { file: "cat-on-lap.jpg", caption: "This was a cat café in Poland. So lovely!", alt: "A white cat curled up on a lap" },
@@ -410,13 +403,6 @@ window.SITE_CONTENT = {
       intro: "Everyday moments, small adventures and the things that make us smile. Tap any photo to see the whole post.",
     },
     posts: [
-      {
-        image: "assets/images/feed/paris-workout.jpg",
-        alt: "A selfie of Nielisson at the gym while James does a plank behind him",
-        date: "2026-10-20",
-        place: "Paris",
-        text: "Workout time in Paris. One of us is clearly having more fun than the other.",
-      },
       {
         image: "assets/images/feed/buttes-chaumont.jpg",
         alt: "A selfie of us on the grass in Parc des Buttes-Chaumont, Paris",
@@ -496,6 +482,21 @@ window.SITE_CONTENT = {
     text: [
       "We would love to hear from you. Whether you have a question, would like to know more about us, or simply want to say hello, please reach out: there's no pressure, and we'll get back to you as soon as we can.",
     ],
+    // Contact form (messages arrive in your inbox through Formspree).
+    // Set endpoint to "" to hide the form.
+    form: {
+      endpoint: "https://formspree.io/f/xyewkval",
+      subject: "New message from our website",   // Subject line of the email you receive
+      nameLabel: "Your name",
+      emailLabel: "Your email",
+      messageLabel: "Your message",
+      buttonText: "Send message",
+      sendingText: "Sending…",
+      successText: "Thank you! Your message has been sent. We'll get back to you as soon as we can.",
+      errorText: "Sorry, something went wrong. Please try again in a moment.",
+      orText: "",   // e.g. "Or email us directly:" to also show the email address under the form
+    },
+    // Email: only used when there is no form (or when form.orText above is filled in).
     email: "jamesonAU2026@gmail.com",
     emailText: "Send us an email",
     phone: "",                     // Optional, e.g. "+61 400 000 000"

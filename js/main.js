@@ -49,6 +49,65 @@
     });
   }
 
+  // Contact form sent to Formspree in the background (fetch). It also has a
+  // normal action/method, so it still works as a plain form if fetch fails to load.
+  function buildContactForm(cfg, container, arrowSvg) {
+    var uid = 0;
+    function field(type, name, label, extra) {
+      var id = "cf-" + name + "-" + (++uid);
+      var input = type === "textarea"
+        ? el("textarea", Object.assign({ id: id, name: name, rows: "5", required: "" }, extra || {}))
+        : el("input", Object.assign({ id: id, type: type, name: name, required: "" }, extra || {}));
+      return el("div", { className: "contact-form__field" }, [el("label", { "for": id, text: label }), input]);
+    }
+    var status = el("p", { className: "contact-form__status", role: "status", "aria-live": "polite" });
+    var button = el("button", { className: "button", type: "submit" }, [el("span", { text: cfg.buttonText || "Send message" })]);
+    button.insertAdjacentHTML("beforeend", arrowSvg);
+    var formNode = el("form", { className: "contact-form", action: cfg.endpoint, method: "POST" }, [
+      field("text", "name", cfg.nameLabel || "Your name", { autocomplete: "name", maxlength: "120" }),
+      field("email", "email", cfg.emailLabel || "Your email", { autocomplete: "email", maxlength: "200" }),
+      field("textarea", "message", cfg.messageLabel || "Your message", { maxlength: "5000" }),
+      // Spam trap: hidden from people, bots fill it in and Formspree ignores the message
+      el("input", { type: "text", name: "_gotcha", tabindex: "-1", autocomplete: "off", className: "contact-form__trap", "aria-hidden": "true" }),
+      el("input", { type: "hidden", name: "_subject", value: cfg.subject || "New message from our website" }),
+      button,
+      status,
+    ]);
+    container.appendChild(formNode);
+
+    if (!window.fetch || !window.FormData) return; // old browser: plain form post
+    formNode.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var label = button.querySelector("span");
+      button.disabled = true;
+      label.textContent = cfg.sendingText || "Sending…";
+      status.textContent = "";
+      status.className = "contact-form__status";
+      fetch(cfg.endpoint, { method: "POST", body: new FormData(formNode), headers: { Accept: "application/json" } })
+        .then(function (response) {
+          return response.json().catch(function () { return {}; }).then(function (data) {
+            if (!response.ok) {
+              var msg = (data.errors || []).map(function (e) { return e.message; }).join(" ");
+              throw new Error(msg || cfg.errorText);
+            }
+          });
+        })
+        .then(function () {
+          formNode.reset();
+          status.textContent = cfg.successText || "Thank you! Your message has been sent.";
+          status.className = "contact-form__status is-success";
+        })
+        .catch(function (error) {
+          status.textContent = (error && error.message) || cfg.errorText || "Sorry, something went wrong.";
+          status.className = "contact-form__status is-error";
+        })
+        .then(function () {
+          button.disabled = false;
+          label.textContent = cfg.buttonText || "Send message";
+        });
+    });
+  }
+
   // Create an <img>, lazy-loaded unless told otherwise
   function image(src, alt, props) {
     var img = el("img", Object.assign({ src: src, alt: alt || "", loading: "lazy", decoding: "async" }, props || {}));
@@ -362,7 +421,15 @@
   var actions = $("contact-actions");
   var arrowSvg = '<svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var email = (contact.email || "").trim();
-  if (email) {
+  var form = contact.form || {};
+  if ((form.endpoint || "").trim()) {
+    // The form replaces the email button. The address is only shown under it if orText is filled in.
+    buildContactForm(form, actions, arrowSvg);
+    if (email && form.orText) {
+      actions.appendChild(el("p", { className: "contact-box__or", text: form.orText }));
+      actions.appendChild(el("p", { className: "contact-box__line" }, [el("a", { href: "mailto:" + email, text: email })]));
+    }
+  } else if (email) {
     var mail = el("a", { className: "button", href: "mailto:" + email }, [el("span", { text: contact.emailText || "Send us an email" })]);
     mail.insertAdjacentHTML("beforeend", arrowSvg);
     actions.appendChild(mail);
