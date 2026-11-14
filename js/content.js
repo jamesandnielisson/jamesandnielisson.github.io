@@ -276,7 +276,7 @@ window.SITE_CONTENT = {
         folder: "assets/images/albums/family-friends/",
         photos: [
           { file: "family-selfie.jpg", caption: "Nielisson and his cousins in Brazil.", alt: "A family selfie with a little one" },
-          { file: "picnic-with-baby.jpg", caption: "James is a natural !", alt: "Holding a baby at a picnic in the park" },
+          { file: "picnic-with-baby.jpg", caption: "James is a natural!", alt: "Holding a baby at a picnic in the park" },
             { file: "garden-lunch.jpg", caption: "We love welcoming our friends into our home.", alt: "Lunch in the garden with family" },
           { file: "beach-with-friend.jpg", caption: "This is Nielisson's mother, Irani.", alt: "At the beach with a friend" },
           { file: "city-lookout.jpg", caption: "Jame's mother and one of his brother. We went to a park in Perth that day.", alt: "With family at a city lookout" },
